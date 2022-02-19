@@ -1,0 +1,6 @@
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\bin\Debug\Recetario_EF_Domain.dll
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\bin\Debug\Recetario_EF_Domain.pdb
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\obj\Debug\Recetario_EF_Domain.csproj.AssemblyReference.cache
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\obj\Debug\Recetario_EF_Domain.csproj.CoreCompileInputs.cache
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\obj\Debug\Recetario_EF_Domain.dll
+C:\Users\Mario Ac\Documents\Visual Studio 2022\Recetario_EF\Recetario_EF_Domain\obj\Debug\Recetario_EF_Domain.pdb

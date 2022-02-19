@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b13f6578-715d-4b18-9780-593c5caa3056": {
+      "ProjectGuid": "b13f6578-715d-4b18-9780-593c5caa3056",
+      "DisplayName": "Recetario_EF_Consola",
+      "ColorIndex": 0
+    },
+    "24f5e053-da2c-4cf1-8e0a-f20b6ce57808": {
+      "ProjectGuid": "24f5e053-da2c-4cf1-8e0a-f20b6ce57808",
+      "DisplayName": "Recetario_EF_Data",
+      "ColorIndex": 1
+    },
+    "fedeadac-edd3-41da-8919-6d0620ddbdd0": {
+      "ProjectGuid": "fedeadac-edd3-41da-8919-6d0620ddbdd0",
+      "DisplayName": "Recetario_EF_Domain",
+      "ColorIndex": 2
+    },
+    "79bfa4fd-34dc-48f9-8f28-d329455121e0": {
+      "ProjectGuid": "79bfa4fd-34dc-48f9-8f28-d329455121e0",
+      "DisplayName": "Recetario_EF_Services",
+      "ColorIndex": 3
+    },
+    "b8bda52d-9f53-49db-b263-b4ec6380fe5f": {
+      "ProjectGuid": "b8bda52d-9f53-49db-b263-b4ec6380fe5f",
+      "DisplayName": "Recetario",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 5
+}
