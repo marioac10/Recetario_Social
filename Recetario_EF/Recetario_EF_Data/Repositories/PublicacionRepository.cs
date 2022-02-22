@@ -21,20 +21,23 @@ namespace Recetario_EF_Data.Repositories
             this._context = context;
         }
 
-        public List<Publicacion> Get(int? idPublicacion, DateTime? from, DateTime? to,int? idReceta)
+        public List<Publicacion> Get(int? idPublicacion, DateTime? from, DateTime? to,int? idReceta,bool?oculto)
         {
             return this._context.Publicaciones.Where(c => (idPublicacion == null || c.Id == idPublicacion) 
             && (from == null || c.FechaDePublicacion >= from) 
             && (to == null || c.FechaDePublicacion <= to)
-            && (idReceta ==null || c.IdReceta == idReceta)).ToList();
+            && (idReceta ==null || c.IdReceta == idReceta)
+            && (oculto == null || c.Receta.Oculto == oculto)).ToList();
         }
 
+        //Insertar una publicación
         public void Insert(Publicacion publicacion)
         {
             this._context.Publicaciones.Add(publicacion);
             this._context.SaveChanges();
         }
 
+        //Actualizar una publicación
         public void Update(Publicacion publicacion)
         {
             var pub = this._context.Publicaciones.Find(publicacion.Id);
@@ -43,6 +46,7 @@ namespace Recetario_EF_Data.Repositories
             this._context.SaveChanges();
         }
 
+        //Eliminar una publicación
         public void Delete(int id)
         {
             var publicacion = this._context.Publicaciones.Find(id);
@@ -50,12 +54,5 @@ namespace Recetario_EF_Data.Repositories
             this._context.SaveChanges();
         }
 
-        /************Método para obtener comentarios***************/
-        public List<Comentario> GetComentarios(int idPublicacion)
-        {
-            var publicacion = this._context.Publicaciones.FirstOrDefault(x => x.Id == idPublicacion);
-            var comentarios = publicacion.Comentarios.ToList();
-            return comentarios;
-        }//Desde el metodo del GET//Del servicio
     }
 }

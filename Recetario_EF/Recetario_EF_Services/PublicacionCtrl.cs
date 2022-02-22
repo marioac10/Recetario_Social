@@ -25,19 +25,20 @@ namespace Recetario_EF_Services
             this._repositoryComentario = new ComentarioRepository();
         }*/
 
-        public List<Publicacion> Get(DateTime? from, DateTime? to,int? idReceta)
+        public List<Publicacion> Get(DateTime? from, DateTime? to,int? idReceta,bool? oculto)
         {
-            return this._publicacionRepository.Get(null, from, to,idReceta).OrderByDescending(p => p.FechaDePublicacion).ToList();
+            return this._publicacionRepository.Get(null, from, to,idReceta,oculto).OrderByDescending(p => p.FechaDePublicacion).ToList();
         }
 
         public Publicacion GetById(int id)
         {
-            var result = this._publicacionRepository.Get(id,null,null,null);
+            var result = this._publicacionRepository.Get(id,null,null,null,null);
             if (result.Count != 1)
                 return null;
             return result.First();
         }
 
+        //Insertar una publicación
         public Publicacion Insert(int idReceta,string descripcion)
         {
             var entity = new Publicacion();
@@ -49,6 +50,7 @@ namespace Recetario_EF_Services
             return entity;
         }
 
+        //Actualizar una publicación
         public Publicacion Update(int idPublicacion,string description)
         {
             var entity = new Publicacion();
@@ -59,18 +61,23 @@ namespace Recetario_EF_Services
             return entity;
         }
 
+        //Eliminar un publicación
         public void Delete(int id)
         {
             this._publicacionRepository.Delete(id);
         }
 
         /**********************MÉTODOS DE LOS COMENTARIOS**********************/
+        //Obtener los comentarios de una publicación
         public List<Comentario> GetComentarios(int idPublicacion)
         {
-            var listaComentarios = this._publicacionRepository.GetComentarios(idPublicacion);
+            var publicacion = this.GetById(idPublicacion);
+            var listaComentarios = publicacion.Comentarios.ToList();
+
             return listaComentarios;
         }
 
+        //Insertar un comentario a una publicación
         public Comentario InsertComentario(string comentario, int idPublicacion, int idUsuario)
         {
             var entity = new Comentario();
@@ -83,6 +90,7 @@ namespace Recetario_EF_Services
             return entity;
         }
 
+        //Actualizar un comentario de una publicación
         public Comentario UpdateComentario(int idComentario, string description, int idPublicacion)
         {
             var comentario = new Comentario()
@@ -95,6 +103,7 @@ namespace Recetario_EF_Services
             return comentario;
         }
 
+        //Eliminar un comentario de una publicación
         public void DeleteComentario(int id)
         {
             this._repositoryComentario.Delete(id);

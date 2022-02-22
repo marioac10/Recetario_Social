@@ -30,19 +30,20 @@ namespace Recetario_EF_Services
             this._valoracionRepository = new ValoracionRepository(dbContext);
         }*/
 
-        public List<Receta> Get(string titulo,DateTime? from, DateTime? to,List<int> listaCategorias,int? idUsuario)
+        public List<Receta> Get(string titulo,DateTime? from, DateTime? to,List<int> listaCategorias,int? idUsuario,bool? oculto)
         {
-            return this._recetaRepository.Get(null,titulo,from,to,listaCategorias,idUsuario).ToList();
+            return this._recetaRepository.Get(null,titulo,from,to,listaCategorias,idUsuario,oculto).ToList();
         }
 
         public Receta GetById(int id)
         {
-            var receta = this._recetaRepository.Get(id, null, null, null, null, null);
+            var receta = this._recetaRepository.Get(id, null, null, null, null, null,null);
             if (receta.Count != 1)
                 return null;
             return receta.First();
         }
 
+        //Insertar una receta
         public Receta Insert(string titulo,byte[] imagen,string ingredientes, string procedimiento,int idUser,List<int> categorias)
         {
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -68,6 +69,7 @@ namespace Recetario_EF_Services
             return receta;
         }
 
+        //Actualizar una receta
         public Receta Update(int id,string titulo,byte[] imagen,string ingredientes,string procedimiento,bool oculto,List<int> categorias)
         {
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -92,6 +94,23 @@ namespace Recetario_EF_Services
             return receta;
         }
 
+        //Eliminar una receta, se hace en cascada
+        public void Delete(int id)
+        {
+            this._recetaRepository.Delete(id);
+        }
+
+        //Ocultar una receta
+        public Receta OcultarReceta(int id, bool oculto)
+        {
+            var receta = new Receta()
+            {
+                Oculto = oculto
+            };
+            this._recetaRepository.UpdateOculto(receta);
+            return receta;
+        }
+
         /*public void UpdateCategoriasDeReceta(int idReceta,List<int> categorias)
         {
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -108,29 +127,8 @@ namespace Recetario_EF_Services
             this._repository.UpdateCategoriasReceta(receta);
         }*/
 
-        public void Delete(int id)
-        {
-            this._recetaRepository.Delete(id);
-        }
-
-        public Receta OcultarReceta(int id, bool oculto)
-        {
-            var receta = new Receta()
-            {
-                Oculto = oculto
-            };
-            this._recetaRepository.UpdateOculto(receta);
-            return receta;
-        }//Metodo del repositorio solo 
-
-        /***************Métodos de valoraciones*******************/
-        /*public double ValoracionPromedio(int idReceta)
-        {
-            var valoresReceta = this._repository.RecetaValoraciones(idReceta);
-            var valores = valoresReceta.Average(x=>x.Valor);
-            return valores;
-        }*/
-
+        /***************MÉTODOS PARA LA VALORACIÓN DE UNA RECETA*******************/
+        //Calificar una receta
         public Valoracion InsertValoracion(int idReceta,int idUsuario, double valor) 
         {
             var valoraciones = this._valoracionRepository.Get(idReceta, idUsuario).FirstOrDefault();
@@ -146,6 +144,7 @@ namespace Recetario_EF_Services
             return null;
         }
 
+        //Actualizar una calificación
         public Valoracion UpdateValoracion()
         {
             return null;
